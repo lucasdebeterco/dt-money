@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 export default {
   content: [
     './index.html',
@@ -22,6 +23,8 @@ export default {
       'red-300': '#F75A68',
       'red-500': '#AB222E',
       'red-700': '#7A1921',
+
+      'white': '#FFF'
     },
     extend: {},
   },
