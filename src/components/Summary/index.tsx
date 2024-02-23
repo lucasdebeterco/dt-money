@@ -7,29 +7,29 @@ export function Summary() {
   return (
     <section
       className="mx-auto mt-[-5rem] grid w-full max-w-[min(70rem,100%-2rem)] grid-cols-3 gap-[2rem]">
-      <div>
-        <header>
+      <div className="rounded-[6px] bg-gray-600 p-[2rem]">
+        <header className="flex items-center justify-between text-gray-300">
           <span>Entradas</span>
-          <ArrowCircleUp size={32} color={colors['green-300']}/>
+          <ArrowCircleUp size={32} color={colors['green-300']} />
         </header>
 
-        <strong>R$ 17.400,00</strong>
+        <strong className="mt-[1rem] block text-[2rem]">R$ 17.400,00</strong>
       </div>
-      <div>
-        <header>
+      <div className="rounded-[6px] bg-gray-600 p-[2rem]">
+        <header className="flex items-center justify-between text-gray-300">
           <span>Saídas</span>
-          <ArrowCircleDown size={32} color={colors['red-300']}/>
+          <ArrowCircleDown size={32} color={colors['red-300']} />
         </header>
 
-        <strong>R$ 17.400,00</strong>
+        <strong className="mt-[1rem] block text-[2rem]">R$ 17.400,00</strong>
       </div>
-      <div>
-        <header>
+      <div className="rounded-[6px] bg-green-700 p-[2rem]">
+        <header className="flex items-center justify-between text-gray-300">
           <span>Total</span>
-          <CurrencyDollar size={32} color={colors['white']}/>
+          <CurrencyDollar size={32} color={colors['white']} />
         </header>
 
-        <strong>R$ 17.400,00</strong>
+        <strong className="mt-[1rem] block text-[2rem]">R$ 17.400,00</strong>
       </div>
     </section>
   )
