@@ -4,6 +4,7 @@ import { Header } from '@/components/Header'
 import { Summary } from '@/components/Summary'
 import { TransactionsContext } from '@/contexts/TransactionsContext.tsx'
 import { SearchForm } from '@/pages/Transactions/Components/SearchForm'
+import { priceFormatter } from '@/utils/formatter.ts'
 
 export function Transactions() {
     const { transactions } = useContext(TransactionsContext)
@@ -23,7 +24,10 @@ export function Transactions() {
                                 <td className="rounded-l-[6px] bg-gray-700 px-[2rem] py-[1.5rem]" width="50%">
                                     {transaction.description}
                                 </td>
-                                <td className={`bg-gray-700 px-[2rem] py-[1.5rem] ${transaction.type === 'income' ? 'text-green-300' : 'text-red-300' }`}>{transaction.price}</td>
+                                <td className={`bg-gray-700 px-[2rem] py-[1.5rem] ${transaction.type === 'income' ? 'text-green-300' : 'text-red-300' }`}>
+                                    {transaction.type === 'outcome' && '- '}
+                                    {priceFormatter.format(transaction.price)}
+                                </td>
                                 <td className="bg-gray-700 px-[2rem] py-[1.5rem]">{transaction.category}</td>
                                 <td className="rounded-r-[6px] bg-gray-700 px-[2rem] py-[1.5rem]">{transaction.createdAt}</td>
                             </tr>

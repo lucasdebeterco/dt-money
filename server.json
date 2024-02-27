@@ -9,11 +9,19 @@
             "createdAt":"2024-02-25T19:36:44.505Z"
         },
         {
-            "id": 1,
+            "id": 2,
             "description": "Hamburguer",
             "type": "outcome",
             "category": "Food",
             "price": 10,
+            "createdAt":"2024-02-25T19:36:44.505Z"
+        },
+        {
+            "id": 3,
+            "description": "Ignite",
+            "type": "outcome",
+            "category": "Education",
+            "price": 1980,
             "createdAt":"2024-02-25T19:36:44.505Z"
         }
     ]
