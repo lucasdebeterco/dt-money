@@ -1,26 +1,31 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import * as RadioGroup from '@radix-ui/react-radio-group'
 import { ArrowCircleDown, ArrowCircleUp, X } from 'phosphor-react'
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import * as z from 'zod'
 
 const newTransactionFormSchema = z.object({
     description: z.string(),
     price: z.number(),
     category: z.string(),
-    //type: z.enum(['income', 'outcome'])
+    type: z.enum(['income', 'outcome'])
 })
 
 type  NewTransactionFormInputs = z.infer<typeof newTransactionFormSchema>
 
 export function NewTransactionModal() {
     const {
+        control,
         register,
         handleSubmit,
         formState: {
             isSubmitting
         }
-    } = useForm<NewTransactionFormInputs>()
+    } = useForm<NewTransactionFormInputs>({
+        defaultValues: {
+            type: 'income'
+        }
+    })
 
     async function handleCreateNewTransaction(data: NewTransactionFormInputs) {
         await new Promise(resolve => setTimeout(resolve, 2000))
@@ -62,16 +67,28 @@ export function NewTransactionModal() {
                         {...register('category')}
                     />
 
-                    <RadioGroup.Root className="mt-[0.5rem] grid grid-cols-[repeat(2,1fr)] gap-[1rem]">
-                        <RadioGroup.Item value="income" className="flex cursor-pointer items-center justify-center gap-[0.5rem] rounded-[6px] bg-gray-700 p-[1rem] text-gray-300 transition data-[state=checked]:bg-green-500 data-[state=unchecked]:hover:bg-gray-600">
-                            <ArrowCircleUp className="text-green-300" />
-                            Entrada
-                        </RadioGroup.Item>
-                        <RadioGroup.Item value="outcome" className="flex cursor-pointer items-center justify-center gap-[0.5rem] rounded-[6px] bg-gray-700 p-[1rem] text-gray-300 transition data-[state=checked]:bg-red-500 data-[state=unchecked]:hover:bg-gray-600">
-                            <ArrowCircleDown className="text-red-300" />
-                            Saída
-                        </RadioGroup.Item>
-                    </RadioGroup.Root>
+                    <Controller
+                        control={control}
+                        name="type"
+                        render={({ field }) => {
+                            return(
+                                <RadioGroup.Root
+                                    className="mt-[0.5rem] grid grid-cols-[repeat(2,1fr)] gap-[1rem]"
+                                    onValueChange={field.onChange}
+                                    value={field.value}
+                                >
+                                    <RadioGroup.Item value="income" className="flex cursor-pointer items-center justify-center gap-[0.5rem] rounded-[6px] bg-gray-700 p-[1rem] text-gray-300 transition data-[state=checked]:bg-green-500 data-[state=unchecked]:hover:bg-gray-600">
+                                        <ArrowCircleUp className="text-green-300" />
+                                        Entrada
+                                    </RadioGroup.Item>
+                                    <RadioGroup.Item value="outcome" className="flex cursor-pointer items-center justify-center gap-[0.5rem] rounded-[6px] bg-gray-700 p-[1rem] text-gray-300 transition data-[state=checked]:bg-red-500 data-[state=unchecked]:hover:bg-gray-600">
+                                        <ArrowCircleDown className="text-red-300" />
+                                        Saída
+                                    </RadioGroup.Item>
+                                </RadioGroup.Root>
+                            )
+                        }}
+                    />
 
                     <button
                         className="pointer hover:enabled::bg-green-700 mt-[1.5rem] h-[58px] rounded-[6px] bg-green-500 px-[1.25rem] font-bold text-white transition disabled:cursor-not-allowed disabled:opacity-30" type="submit"
