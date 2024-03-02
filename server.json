@@ -31,6 +31,38 @@
       "price": 200,
       "category": "teste",
       "createdAt": "2024-03-02T02:57:12.226Z"
+    },
+    {
+      "id": "d3ca",
+      "description": "teste",
+      "price": 879,
+      "category": "teste",
+      "type": "income",
+      "createdAt": "2024-03-02T03:11:07.023Z"
+    },
+    {
+      "id": "8512",
+      "description": "798",
+      "price": 789,
+      "category": "7890",
+      "type": "income",
+      "createdAt": "2024-03-02T03:11:37.370Z"
+    },
+    {
+      "id": "a334",
+      "description": "8097809",
+      "price": 7089,
+      "category": "7089",
+      "type": "outcome",
+      "createdAt": "2024-03-02T03:11:41.922Z"
+    },
+    {
+      "type": "outcome",
+      "description": "Iogurte",
+      "price": 1999,
+      "category": "Alimentação",
+      "createdAt": "2024-03-02T18:15:58.953Z",
+      "id": "kVxBWuE"
     }
   ]
 }
