@@ -1,3 +1,4 @@
+// @ts-expect-error tailwindConfig type
 import theme from '@tailwindConfig'
 import { ArrowCircleDown, ArrowCircleUp, CurrencyDollar } from 'phosphor-react'
 
