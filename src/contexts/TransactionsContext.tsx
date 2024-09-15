@@ -35,24 +35,26 @@ export function TransactionsProvider({children}: TransactionsProviderProps) {
     const [transactions, setTransactions] = useState<Transaction[]>([])
 
     const fetchTransactions = useCallback(async (query?: string) => {
-        const response = await api.get('transactions', {
-            params: {
-                _sort: 'createdAt',
-                order: 'desc',
-                q: query
-            }
-        })
-
-        setTransactions(response.data)
+        const transctionsStorage = localStorage.getItem('transactions-dt-money')
+        transctionsStorage && setTransactions(JSON.parse(transctionsStorage))
+        console.log(query)
     }, [])
 
     const createTransaction = useCallback(async (data: createTransactionData) => {
-        const response = await api.post('transactions', {
+        const newTransaction: Transaction = {
+            id: new Date().valueOf(),
             ...data,
-            createdAt: new Date()
+            createdAt: new Date().toString()
+        }
+
+        setTransactions(prevState => {
+            localStorage.setItem(
+                'transactions-dt-money',
+                JSON.stringify([newTransaction, ...prevState])
+            )
+            return [newTransaction, ...prevState]
         })
 
-        setTransactions(prevState => [response.data, ...prevState])
     }
     , [])
 
